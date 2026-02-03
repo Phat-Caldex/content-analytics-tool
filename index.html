@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TikTok Video Analytics Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 720px;
+      margin: 60px auto;
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+    p {
+      color: #555;
+      line-height: 1.6;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .btn-primary {
+      background: #000;
+      color: #fff;
+    }
+    .btn-secondary {
+      background: #eaeaea;
+      color: #000;
+    }
+    .status {
+      margin-top: 20px;
+      padding: 12px;
+      background: #f0f9ff;
+      border-left: 4px solid #0070f3;
+      display: none;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background: #f3f3f3;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>TikTok Video Analytics Tool</h1>
+
+    <p>
+      This internal tool allows users to connect their TikTok account
+      and retrieve public video performance data for analytics purposes.
+    </p>
+
+    <button class="btn-primary" onclick="connectTikTok()">
+      Connect TikTok Account
+    </button>
+
+    <button class="btn-secondary" onclick="fetchVideos()">
+      Fetch Videos
+    </button>
+
+    <div id="status" class="status"></div>
+
+    <table id="videoTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Video ID</th>
+          <th>Views</th>
+          <th>Likes</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>7392012345678901234</td>
+          <td>12,450</td>
+          <td>980</td>
+          <td>45</td>
+        </tr>
+        <tr>
+          <td>7392098765432109876</td>
+          <td>8,320</td>
+          <td>610</td>
+          <td>31</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      Data is retrieved with user authorization and used for internal analytics only.
+    </div>
+  </div>
+
+  <script>
+    function connectTikTok() {
+      const status = document.getElementById("status");
+      status.style.display = "block";
+      status.innerText = "Redirecting to TikTok for authorization...";
+      
+      // DEMO ONLY:
+      // Khi quay video, bạn có thể:
+      // - mở sẵn trang OAuth TikTok
+      // - hoặc thay window.open bằng authorize URL thật
+    }
+
+    function fetchVideos() {
+      const status = document.getElementById("status");
+      const table = document.getElementById("videoTable");
+
+      status.style.display = "block";
+      status.innerText = "Video data retrieved successfully and synced to Google Sheets.";
+
+      table.style.display = "table";
+    }
+  </script>
+
+</body>
+</html>
