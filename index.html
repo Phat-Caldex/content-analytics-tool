@@ -79,9 +79,9 @@
     <h1>TikTok Video Analytics Tool</h1>
 
     <p>
-      This internal tool allows users to authorize their TikTok account
-      and view available video analytics information.
-      The interface below demonstrates how data will be displayed.
+      This internal tool is designed to help users review public performance
+      metrics of their own TikTok videos. Data is accessed only after user
+      authorization and is used solely for analytics and reporting purposes.
     </p>
 
     <button class="btn-primary" onclick="connectTikTok()">
@@ -97,19 +97,28 @@
     <table id="videoTable">
       <thead>
         <tr>
-          <th>Video ID</th>
           <th>View Count</th>
           <th>Like Count</th>
           <th>Comment Count</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Data will be displayed here after retrieval -->
+        <tr>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
       </tbody>
     </table>
 
     <div class="footer">
-      This page is a demonstration interface for TikTok App Review purposes only.
+      This page is a functional demonstration UI for TikTok App Review.
+      No data is stored or shared without explicit user consent.
     </div>
   </div>
 
@@ -127,7 +136,7 @@
 
       status.style.display = "block";
       status.innerText =
-        "Video analytics interface loaded. Data will appear after authorization.";
+        "Public video analytics interface loaded (no sample data).";
 
       table.style.display = "table";
     }
