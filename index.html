@@ -49,16 +49,19 @@
       background: #f0f9ff;
       border-left: 4px solid #0070f3;
       display: none;
+      font-size: 14px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
+      display: none;
     }
     th, td {
       border: 1px solid #ddd;
       padding: 10px;
       text-align: left;
+      font-size: 14px;
     }
     th {
       background: #f3f3f3;
@@ -76,8 +79,10 @@
     <h1>TikTok Video Analytics Tool</h1>
 
     <p>
-      This internal tool allows users to connect their TikTok account
-      and retrieve public video performance data for analytics purposes.
+      This internal tool is designed to help users review
+      public performance metrics of their own TikTok videos.
+      Data is accessed only after user authorization and is used
+      solely for analytics and reporting purposes.
     </p>
 
     <button class="btn-primary" onclick="connectTikTok()">
@@ -85,38 +90,39 @@
     </button>
 
     <button class="btn-secondary" onclick="fetchVideos()">
-      Fetch Videos
+      Fetch Video Analytics
     </button>
 
     <div id="status" class="status"></div>
 
-    <table id="videoTable" style="display:none;">
+    <table id="videoTable">
       <thead>
         <tr>
           <th>Video ID</th>
-          <th>Views</th>
-          <th>Likes</th>
-          <th>Comments</th>
+          <th>View Count</th>
+          <th>Like Count</th>
+          <th>Comment Count</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>7392012345678901234</td>
-          <td>12,450</td>
-          <td>980</td>
-          <td>45</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
         </tr>
         <tr>
           <td>7392098765432109876</td>
-          <td>8,320</td>
-          <td>610</td>
-          <td>31</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
         </tr>
       </tbody>
     </table>
 
     <div class="footer">
-      Data is retrieved with user authorization and used for internal analytics only.
+      This page is a functional demonstration UI for TikTok App Review.
+      No data is stored or shared without explicit user consent.
     </div>
   </div>
 
@@ -124,12 +130,8 @@
     function connectTikTok() {
       const status = document.getElementById("status");
       status.style.display = "block";
-      status.innerText = "Redirecting to TikTok for authorization...";
-      
-      // DEMO ONLY:
-      // Khi quay video, bạn có thể:
-      // - mở sẵn trang OAuth TikTok
-      // - hoặc thay window.open bằng authorize URL thật
+      status.innerText =
+        "User authorization required. Redirecting to TikTok authorization flow (demo).";
     }
 
     function fetchVideos() {
@@ -137,7 +139,8 @@
       const table = document.getElementById("videoTable");
 
       status.style.display = "block";
-      status.innerText = "Video data retrieved successfully and synced to Google Sheets.";
+      status.innerText =
+        "Public video analytics retrieved successfully (demo data).";
 
       table.style.display = "table";
     }
