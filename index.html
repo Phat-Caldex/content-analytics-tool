@@ -79,10 +79,9 @@
     <h1>TikTok Video Analytics Tool</h1>
 
     <p>
-      This internal tool is designed to help users review
-      public performance metrics of their own TikTok videos.
-      Data is accessed only after user authorization and is used
-      solely for analytics and reporting purposes.
+      This internal tool allows users to authorize their TikTok account
+      and view available video analytics information.
+      The interface below demonstrates how data will be displayed.
     </p>
 
     <button class="btn-primary" onclick="connectTikTok()">
@@ -105,24 +104,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>7392012345678901234</td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>7392098765432109876</td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
+        <!-- Data will be displayed here after retrieval -->
       </tbody>
     </table>
 
     <div class="footer">
-      This page is a functional demonstration UI for TikTok App Review.
-      No data is stored or shared without explicit user consent.
+      This page is a demonstration interface for TikTok App Review purposes only.
     </div>
   </div>
 
@@ -131,7 +118,7 @@
       const status = document.getElementById("status");
       status.style.display = "block";
       status.innerText =
-        "User authorization required. Redirecting to TikTok authorization flow (demo).";
+        "User authorization flow initiated (demo).";
     }
 
     function fetchVideos() {
@@ -140,7 +127,7 @@
 
       status.style.display = "block";
       status.innerText =
-        "Public video analytics retrieved successfully (demo data).";
+        "Video analytics interface loaded. Data will appear after authorization.";
 
       table.style.display = "table";
     }
