@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>TikTok Video Analytics Tool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,7 +13,7 @@
       padding: 0;
     }
     .container {
-      max-width: 720px;
+      max-width: 760px;
       margin: 60px auto;
       background: #ffffff;
       padding: 32px;
@@ -70,22 +71,22 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <div class="container">
     <h1>TikTok Video Analytics Tool</h1>
 
     <p>
-      This internal tool is designed to help users review public performance
-      metrics of their own TikTok videos. Data is accessed only after user
-      authorization and is used solely for analytics and reporting purposes.
+      This web application allows TikTok users to authorize access to their own
+      account and view public video performance metrics for analytics and reporting purposes.
+      Data is accessed only after user consent.
     </p>
 
     <button class="btn-primary" onclick="connectTikTok()">
       Connect TikTok Account
     </button>
 
-    <button class="btn-secondary" onclick="fetchAnalytics()">
+    <button class="btn-secondary" onclick="fetchVideos()">
       Fetch Video Analytics
     </button>
 
@@ -118,7 +119,7 @@
 
     <div class="footer">
       This page is a functional demonstration UI for TikTok App Review.
-      No data is stored or shared without explicit user consent.
+      No data is stored, shared, or modified without explicit user authorization.
     </div>
   </div>
 
@@ -126,20 +127,17 @@
     function connectTikTok() {
       const status = document.getElementById("status");
       status.style.display = "block";
-      status.innerText = "Redirecting to TikTok for authorization...";
-      // Demo only – OAuth flow will be demonstrated in review video
+      status.innerText = "Redirecting user to TikTok authorization...";
     }
 
-    function fetchAnalytics() {
+    function fetchVideos() {
       const status = document.getElementById("status");
       const table = document.getElementById("videoTable");
 
       status.style.display = "block";
       status.innerText = "Public video analytics interface loaded (no sample data).";
-
       table.style.display = "table";
     }
   </script>
-
 </body>
 </html>
