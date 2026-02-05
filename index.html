@@ -49,19 +49,16 @@
       background: #f0f9ff;
       border-left: 4px solid #0070f3;
       display: none;
-      font-size: 14px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
-      display: none;
     }
     th, td {
       border: 1px solid #ddd;
       padding: 10px;
       text-align: left;
-      font-size: 14px;
     }
     th {
       background: #f3f3f3;
@@ -88,15 +85,16 @@
       Connect TikTok Account
     </button>
 
-    <button class="btn-secondary" onclick="fetchVideos()">
+    <button class="btn-secondary" onclick="fetchAnalytics()">
       Fetch Video Analytics
     </button>
 
     <div id="status" class="status"></div>
 
-    <table id="videoTable">
+    <table id="videoTable" style="display:none;">
       <thead>
         <tr>
+          <th>Video ID</th>
           <th>View Count</th>
           <th>Like Count</th>
           <th>Comment Count</th>
@@ -107,8 +105,10 @@
           <td>—</td>
           <td>—</td>
           <td>—</td>
+          <td>—</td>
         </tr>
         <tr>
+          <td>—</td>
           <td>—</td>
           <td>—</td>
           <td>—</td>
@@ -126,17 +126,16 @@
     function connectTikTok() {
       const status = document.getElementById("status");
       status.style.display = "block";
-      status.innerText =
-        "User authorization flow initiated (demo).";
+      status.innerText = "Redirecting to TikTok for authorization...";
+      // Demo only – OAuth flow will be demonstrated in review video
     }
 
-    function fetchVideos() {
+    function fetchAnalytics() {
       const status = document.getElementById("status");
       const table = document.getElementById("videoTable");
 
       status.style.display = "block";
-      status.innerText =
-        "Public video analytics interface loaded (no sample data).";
+      status.innerText = "Public video analytics interface loaded (no sample data).";
 
       table.style.display = "table";
     }
