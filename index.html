@@ -2,142 +2,199 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>TikTok Video Analytics Tool</title>
+  <title>Tikvideo Analytics Tool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f6f8;
+      background: #f5f5f5;
       margin: 0;
       padding: 0;
     }
+
     .container {
-      max-width: 760px;
-      margin: 60px auto;
-      background: #ffffff;
-      padding: 32px;
+      max-width: 900px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 40px;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
+
     h1 {
       margin-top: 0;
-      font-size: 24px;
     }
-    p {
-      color: #555;
-      line-height: 1.6;
-    }
+
     button {
       padding: 12px 20px;
-      font-size: 14px;
+      border-radius: 6px;
       border: none;
-      border-radius: 4px;
       cursor: pointer;
-      margin-right: 10px;
+      font-size: 14px;
     }
+
     .btn-primary {
       background: #000;
       color: #fff;
     }
+
     .btn-secondary {
-      background: #eaeaea;
+      background: #e5e5e5;
       color: #000;
+      margin-left: 10px;
     }
-    .status {
-      margin-top: 20px;
-      padding: 12px;
-      background: #f0f9ff;
-      border-left: 4px solid #0070f3;
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: #fff;
+      width: 420px;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+    .checkbox-group {
+      text-align: left;
+      margin: 20px 0;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .checkbox-group input {
+      margin-right: 10px;
+    }
+
+    .checkbox-group a {
+      margin-left: 4px;
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    .checkbox-group a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-accept {
+      width: 100%;
+      background: #999;
+      color: #fff;
+      cursor: not-allowed;
+    }
+
+    .btn-accept.enabled {
+      background: #000;
+      cursor: pointer;
+    }
+
+    /* Hide main content initially */
+    #mainContent {
       display: none;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
+
+    .note {
       margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background: #f3f3f3;
-    }
-    .footer {
-      margin-top: 30px;
-      font-size: 12px;
-      color: #999;
+      font-size: 13px;
+      color: #777;
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <h1>TikTok Video Analytics Tool</h1>
+
+  <!-- Consent Modal -->
+  <div class="overlay" id="consentOverlay">
+    <div class="modal">
+      <h2>Before using this tool</h2>
+      <p>
+        You must accept our Terms of Use and Privacy Policy before continuing.
+      </p>
+
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="termsCheck">
+          I agree to the
+          <a href="terms.html" target="_blank">Terms of Use</a>
+        </label>
+
+        <label>
+          <input type="checkbox" id="policyCheck">
+          I agree to the
+          <a href="policy.html" target="_blank">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button id="acceptBtn" class="btn-accept" disabled>
+        Accept and Continue
+      </button>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div class="container" id="mainContent">
+    <h1>Tikvideo Analytics Tool</h1>
 
     <p>
       This web application allows TikTok users to authorize access to their own
-      account and view public video performance metrics for analytics and reporting purposes.
-      Data is accessed only after user consent.
+      account and view public video performance metrics for analytics and
+      reporting purposes. Data is accessed only after user consent.
     </p>
 
-    <button class="btn-primary" onclick="connectTikTok()">
-      Connect TikTok Account
-    </button>
+    <button class="btn-primary">Connect TikTok Account</button>
+    <button class="btn-secondary">Fetch Video Analytics</button>
 
-    <button class="btn-secondary" onclick="fetchVideos()">
-      Fetch Video Analytics
-    </button>
-
-    <div id="status" class="status"></div>
-
-    <table id="videoTable" style="display:none;">
-      <thead>
-        <tr>
-          <th>Video ID</th>
-          <th>View Count</th>
-          <th>Like Count</th>
-          <th>Comment Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-          <td>—</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="footer">
+    <div class="note">
       This page is a functional demonstration UI for TikTok App Review.
       No data is stored, shared, or modified without explicit user authorization.
     </div>
   </div>
 
   <script>
-    function connectTikTok() {
-      const status = document.getElementById("status");
-      status.style.display = "block";
-      status.innerText = "Redirecting user to TikTok authorization...";
+    const termsCheck = document.getElementById('termsCheck');
+    const policyCheck = document.getElementById('policyCheck');
+    const acceptBtn = document.getElementById('acceptBtn');
+    const overlay = document.getElementById('consentOverlay');
+    const mainContent = document.getElementById('mainContent');
+
+    function updateButtonState() {
+      if (termsCheck.checked && policyCheck.checked) {
+        acceptBtn.disabled = false;
+        acceptBtn.classList.add('enabled');
+      } else {
+        acceptBtn.disabled = true;
+        acceptBtn.classList.remove('enabled');
+      }
     }
 
-    function fetchVideos() {
-      const status = document.getElementById("status");
-      const table = document.getElementById("videoTable");
+    termsCheck.addEventListener('change', updateButtonState);
+    policyCheck.addEventListener('change', updateButtonState);
 
-      status.style.display = "block";
-      status.innerText = "Public video analytics interface loaded (no sample data).";
-      table.style.display = "table";
-    }
+    acceptBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      mainContent.style.display = 'block';
+    });
   </script>
+
 </body>
 </html>
