@@ -128,20 +128,20 @@
     <div class="modal">
       <h2>Before using this tool</h2>
       <p>
-        You must accept our Terms of Use and Privacy Policy before continuing.
+        You must accept our Terms of Service and Privacy Policy before continuing.
       </p>
 
       <div class="checkbox-group">
         <label>
           <input type="checkbox" id="termsCheck">
           I agree to the
-          <a href="terms.html" target="_blank">Terms of Use</a>
+          <a href="terms.html" target="_blank">Terms of Service</a>
         </label>
 
         <label>
           <input type="checkbox" id="policyCheck">
           I agree to the
-          <a href="policy.html" target="_blank">Privacy Policy</a>
+          <a href="privacy.html" target="_blank">Privacy Policy</a>
         </label>
       </div>
 
@@ -161,8 +161,8 @@
       reporting purposes. Data is accessed only after user consent.
     </p>
 
-    <button class="btn-primary">Connect TikTok Account</button>
-    <button class="btn-secondary">Fetch Video Analytics</button>
+    <button id="connectBtn" class="btn-primary">Connect TikTok Account</button>
+    <button id="fetchBtn" class="btn-secondary" disabled>Fetch Video Analytics</button>
 
     <div class="note">
       This page is a functional demonstration UI for TikTok App Review.
@@ -195,6 +195,34 @@
       mainContent.style.display = 'block';
     });
   </script>
+  <script>
+  const connectBtn = document.getElementById('connectBtn');
+  const fetchBtn = document.getElementById('fetchBtn');
+
+  // Disable Fetch button initially
+  fetchBtn.disabled = true;
+  fetchBtn.style.opacity = '0.6';
+  fetchBtn.style.cursor = 'not-allowed';
+
+  connectBtn.addEventListener('click', () => {
+    alert(
+      'Demo mode:\nOAuth authorization simulated.\nUser consent has been granted.'
+    );
+
+    // Enable Fetch after "authorization"
+    fetchBtn.disabled = false;
+    fetchBtn.style.opacity = '1';
+    fetchBtn.style.cursor = 'pointer';
+  });
+
+  fetchBtn.addEventListener('click', () => {
+    alert(
+      'Demo mode:\nFetching public video analytics after authorization.'
+    );
+  });
+</script>
+
+
 
 </body>
 </html>
