@@ -58,235 +58,6 @@
       align-items: center;
       justify-content: center;
       z-index: 1000;
-      backdrop-filter: blur(2px); /* Hiệu ứng làm mờ nền hiện đại hơn */
-    }
-
-    .modal {
-      background: var(--white);
-      width: 90%;
-      max-width: 420px;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    .checkbox-group { text-align: left; margin: 20px 0; }
-    .checkbox-group label { display: flex; align-items: center; margin-bottom: 12px; font-size: 14px; cursor: pointer; }
-    .checkbox-group input { margin-right: 10px; width: 16px; height: 16px; cursor: pointer; }
-    .checkbox-group a { margin-left: 4px; color: #0066cc; text-decoration: none; }
-    .checkbox-group a:hover { text-decoration: underline; }
-
-    .btn-accept { width: 100%; background: #999; color: var(--white); }
-    .btn-accept.enabled { background: var(--primary-color); }
-
-    #mainContent { display: none; }
-
-    /* Table Styles */
-    .table-responsive {
-      overflow-x: auto;
-      margin-top: 30px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      display: none; /* Hidden by default */
-    }
-
-    table th, table td {
-      border-bottom: 1px solid var(--border);
-      padding: 12px 15px;
-      text-align: left; /* Canh trái dễ đọc hơn cho text */
-    }
-    
-    table th { background: #f9f9f9; font-weight: 600; }
-    /* Căn phải cho số liệu */
-    table td:not(:first-child), table th:not(:first-child) { text-align: right; }
-
-    .note { margin-top: 20px; font-size: 13px; color: #777; line-height: 1.5; }
-    
-    /* Utility class for utilities */
-    .hidden { display: none !important; }
-    .legal-footer {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #eee; /* Đường kẻ mờ ngăn cách cho đẹp */
-  text-align: center;
-}
-
-.legal-footer a {
-  color: #555;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  margin: 0 10px;
-  transition: color 0.2s;
-}
-
-.legal-footer a:hover {
-  color: #000;
-  text-decoration: underline;
-}
-
-/* Chỉnh lại class .note cũ một chút cho cân đối */
-.note {
-  margin-top: 15px;
-  font-size: 12px;
-  color: #999;
-}
-  </style>
-</head>
-<body>
-
-<div class="overlay" id="consentOverlay">
-  <div class="modal">
-    <h2>Before using this tool</h2>
-    <p>You must accept our Terms of Service and Privacy Policy before continuing.</p>
-
-    <div class="checkbox-group">
-      <label>
-        <input type="checkbox" id="termsCheck">
-        I agree to the <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
-      </label>
-      <label>
-        <input type="checkbox" id="policyCheck">
-        I agree to the <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-      </label>
-    </div>
-
-    <button id="acceptBtn" class="btn-accept" disabled>
-      Accept and Continue
-    </button>
-  </div>
-</div>
-
-<div class="overlay hidden" id="loginOverlay">
-  <div class="modal">
-    <h2>Sign in (Demo)</h2>
-    <p style="font-size:13px;color:#666;">
-      This is a simulated authorization screen for app review purposes only.
-    </p>
-
-    <button id="loginConfirm" class="btn-primary" style="width:100%; margin-top:20px;">
-      Login with TikTok (Demo)
-    </button>
-  </div>
-</div>
-
-<div class="container" id="mainContent">
-  <h1>Content Analytics Tool</h1>
-
-  <p>
-    This web application allows users to authorize access to their own account
-    and view public video performance metrics for analytics and reporting
-    purposes. Data is accessed only after user consent.
-  </p>
-
-  <button id="connectBtn" class="btn-primary">Connect Account</button>
-  <button id="fetchBtn" class="btn-secondary" disabled>Fetch Video Analytics</button>
-
-  <div class="table-responsive">
-    <table id="resultTable">
-      <thead>
-        <tr>
-          <th scope="col">Video ID</th>
-          <th scope="col">Views</th>
-          <th scope="col">Likes</th>
-          <th scope="col">Comments</th>
-          <th scope="col">Shares</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-  
-  <p id="loadingText" class="hidden" style="text-align:center; color:#666; margin-top:20px;">
-    <i>Loading metrics...</i>
-  </p>
-
-  <div class="note">
-    This page demonstrates a simulated authorization and analytics flow for
-    app review purposes only. No real user data is accessed or stored.
-  </div>
-  <div class="legal-footer">
-    <a href="https://phat-caldex.github.io/tiktok-app-legal/terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
-    <span style="color:#ccc">|</span>
-    <a href="https://phat-caldex.github.io/tiktok-app-legal/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-  </div>
-
-  <div class="note">
-    This page demonstrates a simulated authorization and analytics flow for
-    app review purposes only. No real user data is accessed or stored.
-  </div>
-
-</div> ```
-
-### Toàn bộ code sau khi ghép (Copy & Paste để chạy thử)
-
-Đây là phiên bản đầy đủ đã tích hợp các link mới vào giao diện:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Content Analytics Tool</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <style>
-    :root {
-      --primary-color: #000;
-      --secondary-bg: #e5e5e5;
-      --white: #fff;
-      --border: #ddd;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 80px auto;
-      background: var(--white);
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-
-    h1 { margin-top: 0; }
-
-    button {
-      padding: 12px 20px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      transition: opacity 0.2s, background 0.2s;
-    }
-
-    button:hover:not(:disabled) { opacity: 0.9; }
-
-    .btn-primary { background: var(--primary-color); color: var(--white); }
-    .btn-secondary { background: var(--secondary-bg); color: #000; margin-left: 10px; }
-
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    /* Overlay & Modal */
-    .overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
       backdrop-filter: blur(2px);
     }
 
@@ -320,9 +91,9 @@
     
     .hidden { display: none !important; }
 
-    /* === STYLE MỚI CHO FOOTER LINK === */
+    /* Footer Links */
     .legal-footer {
-      margin-top: 40px; /* Cách xa nút bấm một chút */
+      margin-top: 40px;
       padding-top: 20px;
       border-top: 1px solid #eee;
       text-align: center;
@@ -332,24 +103,10 @@
       gap: 15px;
     }
 
-    .legal-footer a {
-      color: #555;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-    }
+    .legal-footer a { color: #555; text-decoration: none; font-size: 14px; font-weight: 500; }
+    .legal-footer a:hover { color: #000; text-decoration: underline; }
 
-    .legal-footer a:hover {
-      color: #000;
-      text-decoration: underline;
-    }
-
-    .note { 
-      margin-top: 15px; 
-      font-size: 12px; 
-      color: #999; 
-      text-align: center; /* Căn giữa note luôn cho đẹp */
-    }
+    .note { margin-top: 15px; font-size: 12px; color: #999; text-align: center; }
   </style>
 </head>
 <body>
@@ -410,7 +167,7 @@
 </div>
 
 <script>
-  /* Javascript giữ nguyên như cũ */
+  /* Chỉ giữ lại 1 thẻ script duy nhất ở đây */
   const elements = {
     termsCheck: document.getElementById('termsCheck'),
     policyCheck: document.getElementById('policyCheck'),
@@ -426,77 +183,16 @@
     loadingText: document.getElementById('loadingText')
   };
 
+  /* Logic xử lý Consent */
   function updateConsent() {
     const isChecked = elements.termsCheck.checked && elements.policyCheck.checked;
-    elements.acceptBtn.disabled = !isChecked;
-    elements.acceptBtn.classList.toggle('enabled', isChecked);
-  }
-  elements.termsCheck.addEventListener('change', updateConsent);
-  elements.policyCheck.addEventListener('change', updateConsent);
-  elements.acceptBtn.addEventListener('click', () => {
-    elements.consentOverlay.classList.add('hidden');
-    elements.mainContent.style.display = 'block';
-  });
-
-  elements.connectBtn.addEventListener('click', () => elements.loginOverlay.classList.remove('hidden'));
-  elements.loginConfirm.addEventListener('click', () => {
-    elements.loginOverlay.classList.add('hidden');
-    elements.fetchBtn.disabled = false;
-    elements.fetchBtn.classList.replace('btn-secondary', 'btn-primary');
-    elements.connectBtn.innerText = "Account Connected";
-    elements.connectBtn.disabled = true;
-  });
-
-  const formatNum = (num) => new Intl.NumberFormat('en-US').format(num);
-  elements.fetchBtn.addEventListener('click', () => {
-    elements.fetchBtn.disabled = true;
-    elements.fetchBtn.innerText = "Fetching...";
-    elements.table.style.display = 'none';
-    elements.loadingText.classList.remove('hidden');
-    setTimeout(() => {
-      const demoData = [
-        { id: 'video_001', views: 12034, likes: 532, comments: 89, shares: 34 },
-        { id: 'video_002', views: 9821, likes: 410, comments: 56, shares: 21 },
-        { id: 'video_003', views: 15022, likes: 780, comments: 132, shares: 64 }
-      ];
-      const rowsHTML = demoData.map(v => `
-        <tr><td style="font-family:monospace;">${v.id}</td><td>${formatNum(v.views)}</td><td>${formatNum(v.likes)}</td><td>${formatNum(v.comments)}</td><td>${formatNum(v.shares)}</td></tr>
-      `).join('');
-      elements.tbody.innerHTML = rowsHTML;
-      elements.loadingText.classList.add('hidden');
-      elements.table.style.display = 'table';
-      elements.fetchBtn.innerText = "Data Refreshed";
-      elements.fetchBtn.disabled = false;
-    }, 800);
-  });
-</script>
-
-</body>
-</html>
-</div>
-
-<script>
-  /* ===== Variables ===== */
-  const elements = {
-    termsCheck: document.getElementById('termsCheck'),
-    policyCheck: document.getElementById('policyCheck'),
-    acceptBtn: document.getElementById('acceptBtn'),
-    consentOverlay: document.getElementById('consentOverlay'),
-    mainContent: document.getElementById('mainContent'),
-    connectBtn: document.getElementById('connectBtn'),
-    loginOverlay: document.getElementById('loginOverlay'),
-    loginConfirm: document.getElementById('loginConfirm'),
-    fetchBtn: document.getElementById('fetchBtn'),
-    table: document.getElementById('resultTable'),
-    tbody: document.querySelector('#resultTable tbody'),
-    loadingText: document.getElementById('loadingText')
-  };
-
-  /* ===== Consent Logic ===== */
-  function updateConsent() {
-    const isChecked = elements.termsCheck.checked && elements.policyCheck.checked;
-    elements.acceptBtn.disabled = !isChecked;
-    elements.acceptBtn.classList.toggle('enabled', isChecked);
+    if (isChecked) {
+      elements.acceptBtn.disabled = false;
+      elements.acceptBtn.classList.add('enabled');
+    } else {
+      elements.acceptBtn.disabled = true;
+      elements.acceptBtn.classList.remove('enabled');
+    }
   }
 
   elements.termsCheck.addEventListener('change', updateConsent);
@@ -507,7 +203,7 @@
     elements.mainContent.style.display = 'block';
   });
 
-  /* ===== Login Flow ===== */
+  /* Logic xử lý Login */
   elements.connectBtn.addEventListener('click', () => {
     elements.loginOverlay.classList.remove('hidden');
   });
@@ -517,21 +213,18 @@
     elements.fetchBtn.disabled = false;
     elements.fetchBtn.classList.replace('btn-secondary', 'btn-primary');
     elements.connectBtn.innerText = "Account Connected";
-    elements.connectBtn.disabled = true; // Prevent clicking again
+    elements.connectBtn.disabled = true;
   });
 
-  /* ===== Fetch Demo Data ===== */
-  // Format numbers (e.g., 1000 -> 1,000)
+  /* Logic xử lý Fetch Data */
   const formatNum = (num) => new Intl.NumberFormat('en-US').format(num);
 
   elements.fetchBtn.addEventListener('click', () => {
-    // Show Loading
     elements.fetchBtn.disabled = true;
     elements.fetchBtn.innerText = "Fetching...";
     elements.table.style.display = 'none';
     elements.loadingText.classList.remove('hidden');
 
-    // Simulate Network Request (1 second delay)
     setTimeout(() => {
       const demoData = [
         { id: 'video_001', views: 12034, likes: 532, comments: 89, shares: 34 },
@@ -539,7 +232,6 @@
         { id: 'video_003', views: 15022, likes: 780, comments: 132, shares: 64 }
       ];
 
-      // OPTIMIZATION: Create HTML string once, then inject
       const rowsHTML = demoData.map(v => `
         <tr>
           <td style="font-family:monospace;">${v.id}</td>
@@ -551,13 +243,11 @@
       `).join('');
 
       elements.tbody.innerHTML = rowsHTML;
-
-      // Update UI
       elements.loadingText.classList.add('hidden');
       elements.table.style.display = 'table';
       elements.fetchBtn.innerText = "Data Refreshed";
       elements.fetchBtn.disabled = false;
-    }, 800); // 800ms delay
+    }, 800);
   });
 </script>
 
