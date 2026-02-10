@@ -45,6 +45,11 @@
       margin-left: 10px;
     }
 
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     /* Overlay */
     .overlay {
       position: fixed;
@@ -65,10 +70,6 @@
       padding: 30px;
       border-radius: 8px;
       text-align: center;
-    }
-
-    .modal h2 {
-      margin-top: 0;
     }
 
     .checkbox-group {
@@ -93,15 +94,10 @@
       text-decoration: none;
     }
 
-    .checkbox-group a:hover {
-      text-decoration: underline;
-    }
-
     .btn-accept {
       width: 100%;
       background: #999;
       color: #fff;
-      cursor: not-allowed;
     }
 
     .btn-accept.enabled {
@@ -109,9 +105,25 @@
       cursor: pointer;
     }
 
-    /* Hide main content initially */
     #mainContent {
       display: none;
+    }
+
+    table {
+      margin-top: 30px;
+      width: 100%;
+      border-collapse: collapse;
+      display: none;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table th {
+      background: #f2f2f2;
     }
 
     .note {
@@ -123,7 +135,7 @@
 </head>
 <body>
 
-<!-- Consent Modal -->
+<!-- ===== Consent Modal ===== -->
 <div class="overlay" id="consentOverlay">
   <div class="modal">
     <h2>Before using this tool</h2>
@@ -140,32 +152,44 @@
       </label>
     </div>
 
-    <button id="acceptBtn" class="btn-accept" disabled>Accept and Continue</button>
+    <button id="acceptBtn" class="btn-accept" disabled>
+      Accept and Continue
+    </button>
   </div>
 </div>
 
-<!-- TikTok Login Modal -->
+<!-- ===== Login Modal (Demo) ===== -->
 <div class="overlay" id="loginOverlay" style="display:none;">
   <div class="modal">
-    <h2>Sign in</h2>
-    <p>Authorize access to your account to continue.</p>
-    <button id="loginConfirm" class="btn-primary" style="width:100%;">Login with TikTok</button>
+    <h2>Sign in (Demo)</h2>
+    <p style="font-size:13px;color:#666;">
+      This is a simulated authorization screen for app review purposes only.
+    </p>
+
+    <button id="loginConfirm" class="btn-primary" style="width:100%;margin-top:20px;">
+      Login with TikTok (Demo)
+    </button>
   </div>
 </div>
 
-<!-- Main App -->
-<div class="container" id="mainContent" style="display:none;">
+<!-- ===== Main App ===== -->
+<div class="container" id="mainContent">
   <h1>Content Analytics Tool</h1>
 
   <p>
     This web application allows users to authorize access to their own account
-    and view public video performance metrics for analytics purposes.
+    and view public video performance metrics for analytics and reporting
+    purposes. Data is accessed only after user consent.
   </p>
 
-  <button id="connectBtn" class="btn-primary">Connect Account</button>
-  <button id="fetchBtn" class="btn-secondary" disabled>Fetch Video Analytics</button>
+  <button id="connectBtn" class="btn-primary">
+    Connect Account
+  </button>
+  <button id="fetchBtn" class="btn-secondary" disabled>
+    Fetch Video Analytics
+  </button>
 
-  <table id="resultTable" style="margin-top:30px;width:100%;border-collapse:collapse;display:none;">
+  <table id="resultTable">
     <thead>
       <tr>
         <th>Video ID</th>
@@ -179,8 +203,8 @@
   </table>
 
   <div class="note">
-    This page is a functional demonstration UI for app review purposes.
-    No real user data is accessed or stored.
+    This page demonstrates a simulated authorization and analytics flow for
+    app review purposes only. No real user data is accessed or stored.
   </div>
 </div>
 
@@ -193,9 +217,15 @@ const consentOverlay = document.getElementById('consentOverlay');
 const mainContent = document.getElementById('mainContent');
 
 function updateConsent() {
-  acceptBtn.disabled = !(termsCheck.checked && policyCheck.checked);
-  acceptBtn.classList.toggle('enabled', !acceptBtn.disabled);
+  if (termsCheck.checked && policyCheck.checked) {
+    acceptBtn.disabled = false;
+    acceptBtn.classList.add('enabled');
+  } else {
+    acceptBtn.disabled = true;
+    acceptBtn.classList.remove('enabled');
+  }
 }
+
 termsCheck.onchange = updateConsent;
 policyCheck.onchange = updateConsent;
 
@@ -217,8 +247,8 @@ connectBtn.onclick = () => {
 loginConfirm.onclick = () => {
   loginOverlay.style.display = 'none';
   fetchBtn.disabled = false;
-  fetchBtn.style.opacity = '1';
-  fetchBtn.style.cursor = 'pointer';
+  fetchBtn.classList.remove('btn-secondary');
+  fetchBtn.classList.add('btn-primary');
 };
 
 /* ===== Fetch Demo Data ===== */
@@ -228,36 +258,26 @@ fetchBtn.onclick = () => {
   tbody.innerHTML = '';
 
   const demoData = [
-    { id: 'video_001', views: 12034, likes: 532, comments: 89, shares: 34 },
-    { id: 'video_002', views: 9821, likes: 410, comments: 56, shares: 21 },
-    { id: 'video_003', views: 15022, likes: 780, comments: 132, shares: 64 }
+    { id: 'video_001', views: -, likes: -, comments: -, shares: - },
+    { id: 'video_002', views: -, likes: -, comments: -, shares: - },
+    { id: 'video_003', views: -, likes: -, comments: -, shares: - }
   ];
 
   demoData.forEach(v => {
-    const row = `<tr>
-      <td>${v.id}</td>
-      <td>${v.views}</td>
-      <td>${v.likes}</td>
-      <td>${v.comments}</td>
-      <td>${v.shares}</td>
-    </tr>`;
+    const row = `
+      <tr>
+        <td>${v.id}</td>
+        <td>${v.views}</td>
+        <td>${v.likes}</td>
+        <td>${v.comments}</td>
+        <td>${v.shares}</td>
+      </tr>`;
     tbody.innerHTML += row;
   });
 
   table.style.display = 'table';
 };
 </script>
-
-<style>
-table th, table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-}
-table th {
-  background: #f2f2f2;
-}
-</style>
 
 </body>
 </html>
